@@ -61,7 +61,7 @@
                 <div class="top-right links">
                     @auth
                     @if (Auth::user()->role->id == 1)
-                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
                     @elseif(Auth::user()->role->id == 2)
                     <a href="{{ route('user.dashboard') }}">Dashboard</a>
                     @else

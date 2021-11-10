@@ -24,7 +24,7 @@
             
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{{url('admin/dashboard')}}">
+                    <a href="{{route('dashboard')}}">
                         <i class="menu-icon fa fa-dashboard"></i
                         >Dashboard
                     </a>
@@ -32,7 +32,7 @@
                 <h3 class="menu-title">CMS</h3>
                 <!-- /.menu-title -->
                 <li class="active">
-                    <a href="{{url('admin/users')}}">
+                    <a href="{{route('user.index')}}">
                         <i class="menu-icon fa fa-user"></i>Users
                     </a>
                 </li>
