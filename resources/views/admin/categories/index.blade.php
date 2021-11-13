@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 @endpush
 @section('content')
-    <div id="right-panel" class="right-panel">
-    <div id="right-panel" class="right-panel">
+<div id="right-panel" class="right-panel">
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -144,12 +143,8 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- .content -->
-            </div>
-            @foreach ($categories as $category)
-            <div class="modal fade" id="viewModal-{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
+               @foreach ($categories as $category)
+               <div class="modal fade" id="viewModal-{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
                 data-backdrop="static" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -210,7 +205,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="modal fade" id="editModal-{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
                 data-backdrop="static" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-lg" role="document">
@@ -278,11 +272,11 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+               @endforeach
 
 
-<!-- .content -->
-       </div>
+                <!-- .content -->
+            </div>
 
 
 <!-- .content -->
@@ -317,5 +311,4 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
-       
 @endpush
