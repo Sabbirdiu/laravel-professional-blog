@@ -100,7 +100,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -112,7 +114,61 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->title == Post::findOrFail($id)->title) {
+            $this->validate($request, [
+                'title' => 'required|max:255', //added unique Post later by me
+                'image' => 'sometimes|mimes:jpeg,bmp,png,jpg|max:5000',
+                'category' => 'required',
+                'tags' => 'required',
+                'body' => 'required',
+            ]);
+        } else {
+            $this->validate($request, [
+                'title' => 'required|max:255|unique:posts', //added unique Post later by me
+                'image' => 'sometimes|mimes:jpeg,bmp,png,jpg|max:5000',
+                'category' => 'required',
+                'tags' => 'required',
+                'body' => 'required',
+            ]);
+        }
+        $post = Post::findOrFail($id);
+        $slug = Str::slug($request->title, '-');
+        if (isset($request->image)) {
+            $image = $request->image;
+            $imageName = $slug . '-' . uniqid() . Carbon::now()->timestamp . '.' . $image->getClientOriginalExtension();
+            // #1 check if category image directory is exists
+            if (!Storage::disk('public')->exists('post')) {
+                Storage::disk('public')->makeDirectory('post');
+            }
+            // DELETE old image
+            if (Storage::disk('public')->exists('post/' . $post->image)) {
+                Storage::disk('public')->delete('post/' . $post->image);
+            }
+            $postImage = Image::make($image)->resize(752, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->stream();
+            // Store in storage public/category
+            Storage::disk('public')->put('post/' . $imageName, $postImage); //The put method may be used to store raw file contents on a disk
+        } else {
+            $imageName = $post->image;
+        }
+        $post->user_id = Auth::id();
+        $post->category_id = $request->category;
+        $post->title = $request->title;
+        $post->slug = $slug;
+        $post->image = $imageName;
+        $post->body = $request->body;
+        if (isset($request->status)) {
+            $post->status = true;
+        } else {
+            $post->status = false;
+        }
+        $post->save();
+        Toastr::success('Post Successfully Saved', 'success');
+
+        return redirect()->route('post.index');
+
     }
 
     /**
@@ -123,6 +179,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrfail($id);
+        // delete img if exists
+        // delete 1st condition on Production
+        if ($post->image !== 'laravel-wiki-5f92a8e71c7bc1603447015.jpg' && Storage::disk('public')->exists('post/' . $post->image)) {
+            Storage::disk('public')->delete('post/' . $post->image);
+        }
+        // Delete Tags
+        // $post->tags()->delete();
+        $post->delete();
+        Toastr::success('Post Successfully Deleted :)', 'success');
+
+        return redirect()->route('post.index');
     }
 }

@@ -41,6 +41,11 @@
                         <i class="menu-icon fa fa-file"></i>Categories
                     </a>
                 </li>
+                <li class="active">
+                    <a href="{{route('post.index')}}">
+                        <i class="menu-icon fa fa-file"></i>Post
+                    </a>
+                </li>
                
             </ul>
           
