@@ -77,7 +77,7 @@ class PostController extends Controller
         }
         $post->save();
         Toastr::success('Post Successfully Saved', 'success');
-        return redirect()->route('admin.post.index');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -88,7 +88,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post=Post::findOrFail($id);
+        return view('admin.post.show',compact('post'));
     }
 
     /**
