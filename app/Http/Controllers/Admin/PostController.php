@@ -76,6 +76,12 @@ class PostController extends Controller
             $post->status = 1;
         }
         $post->save();
+        $tags = [];
+        $stingTags = array_map('trim', explode(',', $request->tags));
+        foreach ($stingTags as $tag) {
+            array_push($tags, ['name' => $tag]);
+        }
+        $post->tags()->createMany($tags);
         Toastr::success('Post Successfully Saved', 'success');
         return redirect()->route('post.index');
     }
