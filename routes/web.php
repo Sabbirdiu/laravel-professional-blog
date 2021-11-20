@@ -20,9 +20,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('posts/', [HomeController::class, 'post'])->name('posts');
 Route::get('post/{slug}', [HomeController::class, 'singlepost'])->name('post');
 Route::get('categories/', [HomeController::class, 'categories'])->name('categories');
-
+Route::get('/category/{slug}', [HomeController::class, 'categoryPost'])->name('category.post');
 Route::get('search/',  [HomeController::class, 'search'])->name('search');
-
+Route::get('/tag/{name}', [HomeController::class, 'tagPosts'])->name('tag.posts');
 
 Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class,'index'])->name('dashboard');
