@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\UserController as UserUserController;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +21,7 @@ Route::get('posts/', [HomeController::class, 'post'])->name('posts');
 Route::get('post/{slug}', [HomeController::class, 'singlepost'])->name('post');
 Route::get('categories/', [HomeController::class, 'categories'])->name('categories');
 
-
+Route::get('search/',  [HomeController::class, 'search'])->name('search');
 
 
 Route::middleware(['auth', 'admin','verified'])->group(function () {
@@ -36,3 +40,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
    
 });
 
+// View Composer
+// View::composer('layouts.frontend.partials.sidebar', function ($view) {
+//     $categories = Category::all()->take(10);
+//     $tags = Tag::all();
+//     $latestpost = Post::latest()->take(3)->get();
+//     return $view->with('categories', $categories)->with('latestpost', $latestpost)->with('tags', $tags);
+// });

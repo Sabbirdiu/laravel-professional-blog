@@ -5,10 +5,12 @@
         <!-- Latest Posts -->
         <main class="posts-listing col-lg-8"> 
           <div class="container">
+          <p class="mt-20 text-center text-white">{{$posts->count() ?? "0"}} results found for “{{$search ?? ""}}”</p>
             <div class="row">
               <!-- post -->
               
-              @forelse($posts as $post)
+              @if($posts->count() >0)
+              @foreach ($posts as $post)
               <div class="post col-xl-6">
                 <div class="post-thumbnail"><a href="{{route('post', $post->slug)}}"><img style="height:300px;width: 500px;" src="{{asset('storage/post/'.$post->image)}}" alt="{{$post->image}}" class="img-fluid"></a></div>
                 <div class="post-details">
@@ -27,21 +29,22 @@
                 </div>
               </div>
              
-              @empty
+              @endforeach
+              @else
                  <h3>No post availabe</h3>
-              @endforelse
+              @endif
             </div>
             <!-- Pagination -->
             <!-- <nav aria-label="Page navigation example justify-content-center ">
             {{ $posts->links()}}
             </nav> -->
             <div class="justify-content-center d-flex mt-5">
-                    {{ $posts->links()}}
+            {{$posts->appends(Request::all())->links()}}
                 </div>
           </div>
         </main>
         <!-- sidebar -->
-        @include('layouts.frontend.partials.sidebar')
+       
       </div>
 </div>
     
