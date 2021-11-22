@@ -10,7 +10,7 @@
                <!-- post -->
                @foreach($categories as $cat)
                <div class="post col-xl-3">
-                <div class="post-thumbnail"><a href="{{route('category.post',$cat->slug)}}"><img  style="height:250px;width: 300px;" src="{{asset('storage/category/'.$cat->image)}}" alt="..." class="img-fluid"></a></div>
+                <div class="post-thumbnail"><a href="{{route('category.post',$cat->slug)}}"><img  style="height:200px;width: 300px;" src="{{asset('storage/category/'.$cat->image)}}" alt="..." class="img-fluid"></a></div>
                 <div class="post-details">
                   <div class="post-meta d-flex justify-content-between">
                     <div class="date meta-last">{{$cat->created_at->diffForHumans()}}</div>

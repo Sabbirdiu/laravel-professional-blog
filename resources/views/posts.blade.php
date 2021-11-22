@@ -22,7 +22,7 @@
                       <div class="avatar"><img src="{{asset('storage/user/'.$post->user->image)}}" alt="Avatar" class="img-fluid"></div>
                       <div class="title"><span>{{$post->user->name}}</span></div></a>
                     <div class="date"><i class="icon-bookmark"></i> 2 </div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>12</div> 
                   </footer>
                 </div>
               </div>

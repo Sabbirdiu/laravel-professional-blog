@@ -34,9 +34,33 @@
               </li>
               <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
               </li>
+              @if (Route::has('login'))
+               
+                    @auth
+                    @if (Auth::user()->role->id == 1)
+                    
+                    <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link ">Dashboard</a>
+                    @elseif(Auth::user()->role->id == 2)
+                    <li class="nav-item"><a href="{{ route('user.dashboard') }}" class="nav-link ">Dashboard</a>
+                    @else
+                    null
+                    @endif
+
+                    @else
+                    <li class="nav-item"><a  class="nav-link " href="{{ route('login') }}">Login</a></li>
+                        
+
+                        @if (Route::has('register'))
+                           <li class="nav-item"><a  class="nav-link " href="{{ route('register') }}">Register</a></li> 
+                        @endif
+                    @endauth
+                
+                   @endif
             </ul>
-            <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
-            <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul>
+            <!-- Dropdown -->
+           
+            <div class="navbar-text"><a href="" class="search-btn"><i class="icon-search-1"></i></a></div>
+          
           </div>
         </div>
       </nav>

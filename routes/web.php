@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('posts/', [HomeController::class, 'post'])->name('posts');
@@ -34,8 +36,8 @@ Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::put('admin/profile/password', [UserUserController::class,'changePassword'])->name('profile.password');
 });
 // User ////////////////////////////////////////////////////////////////////////
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user', 'verified']], function () {
-    Route::get('dashboard', [UserController::class,'index'])->name('dashboard');
+Route::middleware(['auth', 'user','verified'])->group(function () {
+    Route::get('user/dashboard', [UserUserController::class,'index'])->name('user.dashboard');
     
    
 });
