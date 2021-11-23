@@ -18,6 +18,10 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Tag', 'postID', 'id');
     }
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
     // Define Scope
     // published()
     public function scopePublished($query)

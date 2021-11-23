@@ -17,7 +17,7 @@
                     <div class="category"><a href="#">{{$post->category->name}}</a></div>
                   </div><a href="{{route('post', $post->slug)}}">
                     <h3 class="h4">{{$post->title}}</h3></a>
-                  <p class="text-muted"> {!! Str::limit($post->body, 400) !!}</p>
+                  <p class="text-muted"> {!! Str::limit($post->body, 300) !!}</p>
                   <footer class="post-footer d-flex align-items-center"><a href="" class="author d-flex align-items-center flex-wrap">
                       <div class="avatar"><img src="{{asset('storage/user/'.$post->user->image)}}" alt="Avatar" class="img-fluid"></div>
                       <div class="title"><span>{{$post->user->name}}</span></div></a>
