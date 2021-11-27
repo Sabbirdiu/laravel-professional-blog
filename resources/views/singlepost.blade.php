@@ -31,7 +31,7 @@
                 </div>
                 <div class="post-comments">
                   <header>
-                    <h3 class="h6">Post Comments<span class="no-of-comments">(3)</span></h3>
+                    <h3 class="h6">Comments ({{$post->comments->count()}})</h3>
                   </header>
                   @foreach ($post->comments as $comment)
                   <div class="comment">

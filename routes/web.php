@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\User\CommentController as UserCommentController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use App\Models\Category;
 use App\Models\Post;
@@ -44,7 +45,9 @@ Route::middleware(['auth', 'admin','verified'])->group(function () {
 });
 // User ////////////////////////////////////////////////////////////////////////
 Route::middleware(['auth', 'user','verified'])->group(function () {
-    Route::get('user/dashboard', [UserUserController::class,'index'])->name('user.dashboard');
+    Route::get('user/dashboard/', [UserUserController::class,'index'])->name('user.dashboard');
+    Route::get('user/comment/', [UserCommentController::class,'index'])->name('user.comment');
+    Route::delete('user/comment/{id}', [UserCommentController::class,'destroy'])->name('comment.destroy');
     
    
 });

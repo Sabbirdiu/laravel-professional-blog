@@ -21,7 +21,7 @@
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
-            
+        @if (Auth::user()->role_id==1)
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{{route('dashboard')}}">
@@ -48,8 +48,24 @@
                 </li>
                
             </ul>
-          
-           
+        @else
+        <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{route('user.dashboard')}}">
+                        <i class="menu-icon fa fa-dashboard"></i
+                        >Dashboard
+                    </a>
+                </li>
+                <h3 class="menu-title">CMS</h3>
+                <!-- /.menu-title -->
+                <li class="active">
+                    <a href="{{route('user.comment')}}">
+                        <i class="menu-icon fa fa-file"></i>Comments
+                    </a>
+                </li>
+              
+            </ul>
+        @endif
         </div>
         <!-- /.navbar-collapse -->
     </nav>
