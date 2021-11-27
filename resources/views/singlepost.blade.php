@@ -33,60 +33,38 @@
                   <header>
                     <h3 class="h6">Post Comments<span class="no-of-comments">(3)</span></h3>
                   </header>
+                  @foreach ($post->comments as $comment)
                   <div class="comment">
                     <div class="comment-header d-flex justify-content-between">
                       <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Jabi Hernandiz</strong><span class="date">May 2016</span></div>
+                        <div class="image"><img src="{{asset('storage/user/'.$comment->user->image)}}" alt="{{$comment->user->image}}"  class="img-fluid rounded-circle"></div>
+                        <div class="title"><strong>{{$comment->user->name}}</strong><span class="date">{{$comment->created_at->format('D, d M Y H:i')}}</span></div>
                       </div>
                     </div>
                     <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                      <p>{{$comment->message}}</p>
                     </div>
                   </div>
-                  <div class="comment">
-                    <div class="comment-header d-flex justify-content-between">
-                      <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Nikolas</strong><span class="date">May 2016</span></div>
-                      </div>
-                    </div>
-                    <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <div class="comment-header d-flex justify-content-between">
-                      <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>John Doe</strong><span class="date">May 2016</span></div>
-                      </div>
-                    </div>
-                    <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                  </div>
+                  @endforeach
                 </div>
                 <div class="add-comment">
-                  <header>
-                    <h3 class="h6">Leave a reply</h3>
-                  </header>
-                  <form action="#" class="commenting-form">
+                @guest
+                <div class="container">
+                    <h4>Please Sign in to post comments - <a href="{{route('login')}}">Sing in</a> or <a href="{{route('register')}}">Register</a></h4>
+                </div>
+                @else
+                  <form  action="{{route('comment.store', $post->id)}}" method="POST" class="commenting-form">
+                  @csrf
                     <div class="row">
-                      <div class="form-group col-md-6">
-                        <input type="text" name="username" id="username" placeholder="Name" class="form-control">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="email" name="username" id="useremail" placeholder="Email Address (will not be published)" class="form-control">
-                      </div>
                       <div class="form-group col-md-12">
-                        <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                        <textarea name="message" id="message" placeholder="Type your comment" class="form-control"></textarea>
                       </div>
                       <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-secondary">Submit Comment</button>
                       </div>
                     </div>
                   </form>
+                  @endguest
                 </div>
               </div>
             </div>

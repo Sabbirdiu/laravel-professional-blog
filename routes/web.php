@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use App\Models\Category;
 use App\Models\Post;
@@ -20,11 +21,17 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('posts/', [HomeController::class, 'post'])->name('posts');
-Route::get('post/{slug}', [HomeController::class, 'singlepost'])->name('post');
+Route::get('post/{slug}/', [HomeController::class, 'singlepost'])->name('post');
 Route::get('categories/', [HomeController::class, 'categories'])->name('categories');
-Route::get('/category/{slug}', [HomeController::class, 'categoryPost'])->name('category.post');
+Route::get('category/{slug}/', [HomeController::class, 'categoryPost'])->name('category.post');
 Route::get('search/',  [HomeController::class, 'search'])->name('search');
-Route::get('/tag/{name}', [HomeController::class, 'tagPosts'])->name('tag.posts');
+Route::get('tag/{name}/', [HomeController::class, 'tagPosts'])->name('tag.posts');
+Route::post('comment/{post}/', [CommentController::class,'store'])->name('comment.store')->middleware(['auth', 'verified']);
+
+
+
+
+
 
 Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class,'index'])->name('dashboard');
