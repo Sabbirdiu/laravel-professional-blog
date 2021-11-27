@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -42,6 +43,10 @@ Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::get('admin/profile',[UserUserController::class,'showProfile'])->name('profile');
     Route::put('admin/profile',[UserUserController::class,'updateProfile'])->name('profile.update');
     Route::put('admin/profile/password', [UserUserController::class,'changePassword'])->name('profile.password');
+    Route::get('admin/comment/', [AdminCommentController::class,'index'])->name('admin.comment');
+    Route::delete('admin/comment/{id}', [AdminCommentController::class,'destroy'])->name('admin.comment.destroy');
+    
+   
 });
 // User ////////////////////////////////////////////////////////////////////////
 Route::middleware(['auth', 'user','verified'])->group(function () {

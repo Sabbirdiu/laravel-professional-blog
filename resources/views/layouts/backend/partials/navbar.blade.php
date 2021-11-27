@@ -43,7 +43,12 @@
                 </li>
                 <li class="active">
                     <a href="{{route('post.index')}}">
-                        <i class="menu-icon fa fa-file"></i>Post
+                        <i class="menu-icon fa fa-file"></i>Posts
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{route('admin.comment')}}">
+                        <i class="menu-icon fa fa-file"></i>Comments
                     </a>
                 </li>
                
