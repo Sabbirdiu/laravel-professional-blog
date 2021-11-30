@@ -47,4 +47,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+        // Many to many
+    public function likedPosts()
+    {
+        return $this->belongsToMany('App\Models\Post')->withTimestamps();
+    }
 }

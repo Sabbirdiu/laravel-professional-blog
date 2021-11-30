@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -15,10 +17,12 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     public function index(){
-        return view('user.index');
+        $posts = Post::where('user_id', Auth::id())->latest()->get();
+        $comment = Comment::where('user_id', Auth::id())->latest()->get();
+        return view('user.index',compact('posts','comment'));
     }
     public function showProfile(){
-        $user=User::find(Auth::user()->id);
+        $user=User::find(Auth::user()->id); 
         return view('user.profile',compact('user'));
     }
     public function updateProfile(Request $request){

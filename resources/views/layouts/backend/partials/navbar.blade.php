@@ -12,10 +12,10 @@
             >
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"
+            <a class="navbar-brand" href="/"
                 ><img src="{{asset('backend/images/logo.png')}}" alt="Logo"
             /></a>
-            <a class="navbar-brand hidden" href="./"
+            <a class="navbar-brand hidden" href="/"
                 ><img src="{{asset('backend/images/logo2.png')}}" alt="Logo"
             /></a>
         </div>

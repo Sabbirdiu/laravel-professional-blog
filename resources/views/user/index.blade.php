@@ -52,31 +52,14 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Posts</div>
-                        <div class="stat-digit">4</div>
+                        <div class="stat-digit">{{$posts->count()}}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib">
-                        <i
-                            class="ti-user text-primary border-primary"
-                        ></i>
-                    </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Users</div>
-                        <div class="stat-digit">5</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="col-xl-3 col-lg-6">
         <div class="card">
             <div class="card-body">
@@ -88,30 +71,14 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Comments</div>
-                        <div class="stat-digit">5</div>
+                        <div class="stat-digit">{{$comment->count()}}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib">
-                        <i
-                            class="ti-thumb-up text-warning border-warning"
-                        ></i>
-                    </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Categories</div>
-                        <div class="stat-digit">5</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -119,7 +86,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-striped">
-                    <thead>
+                    <thead> 
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Comment</th>
@@ -128,13 +95,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($comment->take(10) as $key => $comment)
                        
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>hello worlf message</td>
-                            <td>sabbir</td>
-                            <td><a href="">hello world post</a></td>
-                        </tr>
+                       <tr>
+                           <th scope="row">{{$key+1}}</th>
+                           <td>{{Str::limit($comment->message, 30)}}</td>
+                           <td>{{$comment->user->name}}</td>
+                           <td><a href="{{route('post', $comment->post->slug)}}">{{Str::limit($comment->post->title, 30)}}</a></td>
+                       </tr>
+                       @endforeach    
                         
                     </tbody>
                 </table>

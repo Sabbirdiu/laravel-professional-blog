@@ -69,7 +69,7 @@
                         </nav>
                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
                             <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <form action="{{route('user.profile.update')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('profile.update')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf()
                                     @method('PUT')
                                     <div class="row form-group">
@@ -101,7 +101,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <form action="{{route('user.profile.password')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('profile.password')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf
                                     @method('PUT')
                                 <div class="row form-group">

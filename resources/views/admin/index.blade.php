@@ -52,7 +52,7 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Posts</div>
-                        <div class="stat-digit">4</div>
+                        <div class="stat-digit">{{$posts->count()}}</div>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Users</div>
-                        <div class="stat-digit">5</div>
+                        <div class="stat-digit">{{$users->count()}}</div>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Comments</div>
-                        <div class="stat-digit">5</div>
+                        <div class="stat-digit">{{$comments->count()}}</div>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="stat-content dib">
                         <div class="stat-text">Categories</div>
-                        <div class="stat-digit">5</div>
+                        <div class="stat-digit">{{$categories->count()}}</div>
                     </div>
                 </div>
             </div>
@@ -128,14 +128,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($comments->take(10) as $key => $comment)
                        
                         <tr>
-                            <th scope="row">1</th>
-                            <td>hello worlf message</td>
-                            <td>sabbir</td>
-                            <td><a href="">hello world post</a></td>
+                            <th scope="row">{{$key+1}}</th>
+                            <td>{{Str::limit($comment->message, 30)}}</td>
+                            <td>{{$comment->user->name}}</td>
+                            <td><a href="{{route('post', $comment->post->slug)}}">{{Str::limit($comment->post->title, 30)}}</a></td>
                         </tr>
-                        
+                        @endforeach    
                     </tbody>
                 </table>
             </div>

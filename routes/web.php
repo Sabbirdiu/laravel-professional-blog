@@ -40,9 +40,9 @@ Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::resource('admin/user',UserController::class)->except(['create', 'show', 'edit', 'store']);
     Route::resource('admin/category', CategoryController::class)->except(['create', 'show', 'edit']);
     Route::resource('admin/post', PostController::class);
-    Route::get('admin/profile',[UserUserController::class,'showProfile'])->name('profile');
-    Route::put('admin/profile',[UserUserController::class,'updateProfile'])->name('profile.update');
-    Route::put('admin/profile/password', [UserUserController::class,'changePassword'])->name('profile.password');
+    Route::get('admin/profile',[AdminController::class,'showProfile'])->name('profile');
+    Route::put('admin/profile',[AdminController::class,'updateProfile'])->name('profile.update');
+    Route::put('admin/profile/password', [AdminController::class,'changePassword'])->name('profile.password');
     Route::get('admin/comment/', [AdminCommentController::class,'index'])->name('admin.comment');
     Route::delete('admin/comment/{id}', [AdminCommentController::class,'destroy'])->name('admin.comment.destroy');
     
@@ -53,6 +53,9 @@ Route::middleware(['auth', 'user','verified'])->group(function () {
     Route::get('user/dashboard/', [UserUserController::class,'index'])->name('user.dashboard');
     Route::get('user/comment/', [UserCommentController::class,'index'])->name('user.comment');
     Route::delete('user/comment/{id}', [UserCommentController::class,'destroy'])->name('comment.destroy');
+    Route::get('user/profile',[UserUserController::class,'showProfile'])->name('user.profile');
+    Route::put('user/profile',[UserUserController::class,'updateProfile'])->name('user.profile.update');
+    Route::put('admin/profile/password', [UserUserController::class,'changePassword'])->name('user.profile.password');
     
    
 });

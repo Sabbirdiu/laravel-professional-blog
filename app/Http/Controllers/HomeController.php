@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -62,6 +63,17 @@ class HomeController extends Controller
         $posts = Post::where('title', 'like', "%$search%")->paginate(10);
         $posts->appends(['search' => $search]);
         return view('search', compact('posts', 'search'));
+    }
+    public function likePost($post){
+        // Check if user already liked the post or not
+        $user = Auth::user();
+        $likePost = $user->likedPosts()->where('post_id', $post)->count();
+        if($likePost == 0){
+            $user->likedPosts()->attach($post);
+        } else{
+            $user->likedPosts()->detach($post);
+        }
+        return redirect()->back();
     }
    
 
