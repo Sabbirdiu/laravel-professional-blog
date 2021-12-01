@@ -1,10 +1,15 @@
-# Django_Social_Network
+# Laravel Professional Blog
 
-Used Tech Stack
+    In this project Admin can Added , delete , update (posts,categories) delete comment and update his profile.
+    User can like the post comment the post. For do that user has to be log in first.Post view also show in the
+    Blog page.User can update his profile.
+
+
+# Used Tech Stack
 
 1. Laravel
-2.  
-3. 
+2. Bootstrap Auth
+3. php my admin
 
 ### Screenshots of the project page
 
