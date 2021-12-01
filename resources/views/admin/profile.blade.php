@@ -27,7 +27,7 @@
 <div class="row">
     <div class="col-md-12">
         @if ($errors->any())
-
+ 
         @foreach ($errors->all() as $error)
         <div class="alert  alert-danger alert-dismissible fade show" role="alert">
             <span class="badge badge-pill badge-danger">Erorr</span> {{$error}}
@@ -101,7 +101,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <form action="{{route('profile.password')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('admin.password')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf
                                     @method('PUT')
                                 <div class="row form-group">

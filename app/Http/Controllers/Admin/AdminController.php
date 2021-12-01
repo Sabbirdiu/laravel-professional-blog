@@ -29,21 +29,20 @@ class AdminController extends Controller
         $user = User::find(Auth::user()->id);
         return view('admin.profile', compact('user'));
     }
-    public function updateProfile(Request $request)
-    {
-        // Fix the update issue
+    public function updateProfile(Request $request){
         if ($request->name == User::findOrFail(Auth::id())->name) {
             $this->validate($request, [
                 'name' => 'required',
-                'userid' => 'required',
+                'username' => 'required',
                 'about' => 'sometimes|max:255',
                 'image' => 'sometimes|image|mimes:jpg,png,bmp,jpeg|max:2000'
+
 
             ]);
         } else {
             $this->validate($request, [
                 'name' => 'required',
-                'userid' => 'required|unique:users',
+                'username' => 'required',
                 'about' => 'sometimes|max:255',
                 'image' => 'sometimes|image|mimes:jpg,png,bmp,jpeg|max:2000'
 
@@ -71,7 +70,7 @@ class AdminController extends Controller
         }
 
         $user->name = $request->name;
-        $user->userid = $request->userid;
+        $user->username = $request->username;
         $user->image = $imageName;
         $user->about = $request->about;
         $user->save();

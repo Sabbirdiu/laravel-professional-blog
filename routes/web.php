@@ -43,7 +43,7 @@ Route::middleware(['auth', 'admin','verified'])->group(function () {
     Route::resource('admin/post', PostController::class);
     Route::get('admin/profile',[AdminController::class,'showProfile'])->name('profile');
     Route::put('admin/profile',[AdminController::class,'updateProfile'])->name('profile.update');
-    Route::put('admin/profile/password', [AdminController::class,'changePassword'])->name('profile.password');
+    Route::put('admin/profile/password', [AdminController::class,'changePassword'])->name('admin.password');
     Route::get('admin/comment/', [AdminCommentController::class,'index'])->name('admin.comment');
     Route::delete('admin/comment/{id}', [AdminCommentController::class,'destroy'])->name('admin.comment.destroy');
     
@@ -56,7 +56,7 @@ Route::middleware(['auth', 'user','verified'])->group(function () {
     Route::delete('user/comment/{id}', [UserCommentController::class,'destroy'])->name('comment.destroy');
     Route::get('user/profile',[UserUserController::class,'showProfile'])->name('user.profile');
     Route::put('user/profile',[UserUserController::class,'updateProfile'])->name('user.profile.update');
-    Route::put('admin/profile/password', [UserUserController::class,'changePassword'])->name('user.profile.password');
+    Route::put('user/profile/password', [UserUserController::class,'changePassword'])->name('user.profile.password');
     
    
 });
