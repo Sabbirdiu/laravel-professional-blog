@@ -32,8 +32,6 @@
               </li>
               <li class="nav-item"><a href="{{route('categories')}}" class="nav-link ">Category</a>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
-              </li>
               @if (Route::has('login'))
                
                     @auth

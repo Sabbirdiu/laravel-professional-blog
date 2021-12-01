@@ -29,11 +29,11 @@
                 <div class="d-flex align-items-center">
                  
                   <div class="views">
-                    <i class="icon-eye"></i> 5
+                    <i class="icon-eye"></i> {{$latestpost->view_count}}
                   </div> 
                   
                    <div class="comments">
-                    <i class="icon-comment"></i>6
+                    <i class="icon-comment"></i>{{$latestpost->comments->count()}}
                   </div> 
                 </div>
               </div>

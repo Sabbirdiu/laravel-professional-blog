@@ -21,8 +21,10 @@
                   <footer class="post-footer d-flex align-items-center"><a href="" class="author d-flex align-items-center flex-wrap">
                       <div class="avatar"><img src="{{asset('storage/user/'.$post->user->image)}}" alt="Avatar" class="img-fluid"></div>
                       <div class="title"><span>{{$post->user->name}}</span></div></a>
-                    <div class="date"><i class="icon-bookmark"></i> 2 </div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div> 
+                    <div class="date"><i class="icon-eye"></i> {{$post->view_count}} </div>
+                    <div class="comments meta-last "><i class="icon-comment"></i>{{$post->comments->count()}}</div> |
+                    <div class=""><i class="fa fa-heart-o"></i> {{$post->likedUsers->count()}}</div> 
+                    
                   </footer>
                 </div>
               </div>

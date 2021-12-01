@@ -30,6 +30,7 @@ Route::get('search/',  [HomeController::class, 'search'])->name('search');
 Route::get('tag/{name}/', [HomeController::class, 'tagPosts'])->name('tag.posts');
 Route::post('comment/{post}/', [CommentController::class,'store'])->name('comment.store')->middleware(['auth', 'verified']);
 
+Route::post('like-post/{post}/', [HomeController::class, 'likePost'])->name('post.like')->middleware(['auth', 'verified']);
 
 
 

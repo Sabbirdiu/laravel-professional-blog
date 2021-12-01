@@ -17,8 +17,22 @@
                     <div class="title"><span>{{$post->user->name}}</span></div></a>
                   <div class="d-flex align-items-center flex-wrap">       
                     <div class="date"><i class="icon-clock"></i> {{$post->created_at->diffForHumans()}}</div>
-                    <div class="views"><i class="icon-eye"></i> 500</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                    <div class="views"><i class="icon-eye"></i> {{$post->view_count}}</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{$post->comments->count()}}</div>
+                    <div><i></i></div>|
+                    <div class="comments ">
+                    @guest
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>{{$post->likedUsers->count()}} people like this
+                    @else
+                    <a href="#" onclick="document.getElementById('like-form-{{$post->id}}').submit();"> <i class="fa fa-heart" aria-hidden="true" style="color: {{Auth::user()->likedPosts()->where('post_id', $post->id)->count() > 0 ? 'red' : ''}}"></i></a>
+                      {{$post->likedUsers->count()}} people like this
+                  
+                      <form action="{{route('post.like',$post->id)}}" method="POST" style="display: none" id="like-form-{{$post->id}}">
+                      @csrf
+                      </form>
+                    @endguest
+                    </div>
+   
                   </div>
                 </div>
                 <div class="post-body">

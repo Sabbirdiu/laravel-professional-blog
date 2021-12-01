@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +42,13 @@ class HomeController extends Controller
         $latestpost = Post::latest()->take(3)->published()->get();
         $categories = Category::take(10)->get();
         $tags = Tag::all();
+        // $posts = Post::latest()->take(3)->published()->get();
+        // Increase View count
+        $postKey = 'post_'.$post->id;
+        if(!Session::has($postKey)){
+            $post->increment('view_count');
+            Session::put($postKey, 1);
+        }
         return view('singlepost', compact('post','categories','latestpost','tags'));
     }
     public function categories()
