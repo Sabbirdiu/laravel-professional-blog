@@ -26,4 +26,25 @@ Used Tech Stack
 ## User List
 <img src="ss/6 admin user.png" height="600">
 
+## All Categories list 
+<img src="ss/7 admin post.png" height="600">
+
+## All post list
+<img src="ss/8 admin cat.png" height="600">
+
+## All comment
+<img src="ss/9 admin comment.png" height="600">
+
+## Admin Profile
+<img src="ss/9 admin profile.png" height="600">
+
+## Admin Profile password Change
+<img src="ss/10  admin profile change pass.png" height="600">
+
+## Blog page
+<img src="ss/11 front blog.png" height="600">
+
+## Categories page
+<img src="ss/12 cat.png" height="600">
+
 
